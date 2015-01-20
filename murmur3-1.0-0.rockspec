@@ -20,6 +20,6 @@ dependencies = {
 build = {
 	type = "builtin",
 	modules = {
-		murmur3 = "lmurmur3.c"
+		murmur3 = "murmurhash3-lua/lmurmur3.c"
 	}
 }
