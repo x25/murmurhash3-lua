@@ -1,16 +1,9 @@
-local murmur = require "murmur3"
+local mmh3 = require "murmurhash3"
 
-function hex (str)
-	local len = string.len( str )
-	local result = ""
-	for i = 1, len do
-		local ord = string.byte( str, i )
-		result = result .. string.format( "%02x", ord )
-	end
-	
-	return result
-end 
- 
-hash = murmur.hash32("test")
+local seed = 0 -- (optional)
 
-print(hex(hash))
+local data = "payload"
+
+local hash = mmh3.hash32(data, seed)
+
+print(hash)

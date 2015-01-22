@@ -2,8 +2,7 @@
 #include "lua.h"
 #include "lauxlib.h"
 
-
-#define LIBNAME		"murmur3"
+#define LIBNAME		"murmurhash3"
 #define LIBVERSION	"1.0.0"
 
 
@@ -59,19 +58,32 @@ uint32_t murmur3_32(const char *key, uint32_t len, uint32_t seed) {
 
 
 static int l_hash_x86_32 (lua_State *L) {
-	uint32_t seed = 42;
-	uint32_t hash;
+
+	uint32_t seed = 0;
+	double num;
 	size_t len;
+	uint32_t hash;
+
+	size_t arguments = lua_gettop(L);
 
 	const char *s = luaL_checklstring(L, 1, &len);
 
+	if (arguments > 1 ) {
+
+		num = luaL_checknumber(L, 2);
+
+		if (num < 0 || num > 0xffffffff) {
+
+			lua_pushstring(L, "Argument 2 must be a Uint32");
+			return lua_error(L);
+		}
+
+		seed = num;
+	}
+
 	hash = murmur3_32(s, len, seed);
 
-	luaL_Buffer b;
-	luaL_buffinit(L, &b);
-	luaL_addlstring(&b, (const char *)&hash, sizeof(uint32_t));
-	luaL_pushresult(&b);
-
+	lua_pushnumber(L, hash);
 	return 1;
 }
 
@@ -83,7 +95,7 @@ static const struct luaL_Reg R[] =
 };
 
 
-LUALIB_API int luaopen_murmur3(lua_State *L)
+LUALIB_API int luaopen_murmurhash3(lua_State *L)
 {
 	luaL_register(L, LIBNAME, R);
 	lua_pushliteral(L, "version");

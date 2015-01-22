@@ -1,4 +1,4 @@
-package = "murmur3"
+package = "murmurhash3"
 version = "1.0-0"
 
 source = {
@@ -20,6 +20,6 @@ dependencies = {
 build = {
 	type = "builtin",
 	modules = {
-		murmur3 = "murmurhash3-lua/lmurmur3.c"
+		murmurhash3 = "murmurhash3-lua/lmurmurhash3.c"
 	}
 }
