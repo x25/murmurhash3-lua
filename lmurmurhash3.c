@@ -2,8 +2,9 @@
 #include "lua.h"
 #include "lauxlib.h"
 
+
 #define LIBNAME		"murmurhash3"
-#define LIBVERSION	"1.0.0"
+#define LIBVERSION	"1.2.0"
 
 
 uint32_t murmur3_32(const char *key, uint32_t len, uint32_t seed) {

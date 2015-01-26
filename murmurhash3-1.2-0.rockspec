@@ -1,15 +1,15 @@
 package = "murmurhash3"
-version = "1.1-0"
+version = "1.2-0"
 
 source = {
-	url = "git://github.com/x25/murmurhash3-lua",
-	tag = "v1.1"
+	url = "git://github.com/x25/murmurhash3-lua.git",
+	tag = "v1.2"
 }
 
 description = {
 	summary = "Murmurhash3 for Lua",
 	detailed = "Murmurhash3 for Lua",
-	homepage = "https://github.com/x25/murmurhash3-lua",
+	homepage = "https://github.com/x25/murmurhash3-lua/",
 	license = "Public domain"
 }
 
@@ -20,6 +20,6 @@ dependencies = {
 build = {
 	type = "builtin",
 	modules = {
-		murmurhash3 = "murmurhash3-lua/lmurmurhash3.c"
+		murmurhash3 = "lmurmurhash3.c"
 	}
 }
